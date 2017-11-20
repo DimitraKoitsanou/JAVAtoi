@@ -28,7 +28,7 @@ public class Suggestion {
 
 		public String suggest(String wrongWord) {
 
-			String suggestion="kamia protasi" ;
+			String suggestion="καμία πρόταση" ;
 			int minDistance= 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
 
 			for(String dictionaryWord : dictionary) {

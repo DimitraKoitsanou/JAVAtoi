@@ -9,8 +9,8 @@ public class suggestiontest {
 	@Test
 	public void test() {
 		Suggestion test = new Suggestion() ;
-		String output = test.suggest("‹‚·ËÈ") ;
-		assertEquals("‹‚·Ë·",output);
+		String output = test.suggest("Œ¨Œ≤Œ±Œ∏Œπ") ;
+		assertEquals("Œ¨Œ≤Œ±Œ∏Œ±",output);
 	}
 
 }
