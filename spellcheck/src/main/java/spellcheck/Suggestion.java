@@ -60,7 +60,6 @@ public class Suggestion {
 
 		}
 
-
 		public  int minimumEditDistance(String firstWord, String secondWord) {
 
 		int i, j=0;
