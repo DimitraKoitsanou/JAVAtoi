@@ -19,5 +19,4 @@ public class SplitWords {
 		}
 	    return userText;
 	}
-
 }
