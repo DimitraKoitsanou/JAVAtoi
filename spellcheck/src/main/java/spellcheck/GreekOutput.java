@@ -22,8 +22,8 @@ private String codepage;
 					}
 					  catch (UnsupportedEncodingException e){
 						    System.out.println(e.toString());
-						    System.out.println(codepage + "δεν υποστιρίζεται");
-						    System.out.println("Τερματισμός προγράμματος");
+						    System.out.println(codepage + "Ξ΄ΞµΞ½ Ο…Ο€ΞΏΟƒΟ„Ξ·ΟΞ―Ξ¶ΞµΟ„Ξ±ΞΉ.");
+						    System.out.println("Ξ¤ΞµΟΞΌΞ±Ο„ΞΉΟƒΞΌΟΟ‚ Ο€ΟΞΏΞ³ΟΞ¬ΞΌΞΌΞ±Ο„ΞΏΟ‚.");
 						    System.exit(0);
 				         }
 					}
