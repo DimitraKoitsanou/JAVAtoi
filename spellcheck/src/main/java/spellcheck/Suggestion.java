@@ -1,51 +1,45 @@
 package spellcheck;
+
 import java.util.*;
 
+
 public class Suggestion {
-
-		private LinkedList<String> dictionary;
-
-
-		public  Suggestion (LinkedList<String> dictionary) {
-
-			this.dictionary = dictionary;
-
-		}
-		public Suggestion(){
-			
-		}
-
-		public void setDictionary(LinkedList<String> dictionary) {
-
-			this.dictionary = dictionary;
-		}
+  private HashSet<String> dictionary;
 
 
-		public LinkedList<String> getDictionary() {
+  public  Suggestion(HashSet<String> dictionary) {
 
-			return dictionary;
-		}
+    this.dictionary = dictionary;
 
-		public String suggest(String wrongWord) {
+  }
 
-			String suggestion="καμία πρόταση" ;
-			int minDistance= 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
+  public Suggestion(){
 
-			for(String dictionaryWord : dictionary) {
+  }
 
-				int distance = 0;
+  public void setDictionary(HashSet<String> dictionary) {
 
-				if ( (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) &&(dictionaryWord.charAt(0) == wrongWord.charAt(0) )) {
+    this.dictionary = dictionary;
+  }
 
-					distance = minimumEditDistance(dictionaryWord,wrongWord);
 
-					if (distance == 1) {
+  public HashSet<String> getDictionary() {
+    return dictionary;
+  }
 
-						return dictionaryWord;
+  public String suggest(String wrongWord) {
 
-					}
+  String suggestion = "καμία πρόταση";
+  int minDistance= 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
+  for(String dictionaryWord : dictionary) {
+    int distance = 0;
+    if ( (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) &&(dictionaryWord.charAt(0) == wrongWord.charAt(0) )) {
+      distance = minimumEditDistance(dictionaryWord,wrongWord);
+      if (distance == 1) {
+        return dictionaryWord;
+      }
 
-				   if ( distance < minDistance ) {
+				   if (distance < minDistance) {
 
 					minDistance = distance;
 					suggestion = dictionaryWord;}
