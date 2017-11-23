@@ -1,43 +1,55 @@
 package spellcheck;
 
-import java.io.*;
-import java.util.LinkedList;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
 
 public class Dictionary {
 	
-	private LinkedList<String> dictionary  = new LinkedList<String>();
+	private HashSet<String> dictionary  = new HashSet<String>();
 	private String fileName;
+	private String codePage;
 	
-	public Dictionary(String fileName) {
+	public Dictionary(String fileName , String codePage) {
 		this.fileName = fileName;
+		this.codePage = codePage;
 	}
-
-	String line = null;
-
-	GreekOutput greekOutput = new GreekOutput();
-
-	public LinkedList<String> addDictionaryToList() {
-
-		try { // Read words from text file and store them in dictionary list
-
-			File fileDir = new File(fileName);
-
-			BufferedReader in = new BufferedReader(
-			   new InputStreamReader(
-	                      new FileInputStream(fileDir), "Cp1253"));
-
-			while( (line = in.readLine() ) != null )  // Until every line has been read
-				dictionary.add(line); // Add every word from Dictionary to the List
-			in.close();
-
-	} catch (FileNotFoundException ex) {
-		greekOutput.printText("Δεν βρέθηκε το αρχείο.");
-	} catch (IOException ex) {
-		greekOutput.printText("Πρόβλημα στην ανάγνωση αρχείου.");
-
-	}	
+	
+	public HashSet<String> returnDictionaryList(HashSet<String> dictionary){
 		return dictionary;
 	}
+
+	public void putDictionaryToList() {
+		GreekOutput greekOutput = new GreekOutput(codePage);
+		BufferedReader br = null;
+
+	try {
+			
+		FileInputStream fis = new FileInputStream(fileName);
+		br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
+		String line = null;
+		while( (line = br.readLine() ) != null )
+				dictionary.add(line); 
+		
+	} catch (FileNotFoundException ex) {
+		greekOutput.printLine("Δεν βρέθηκε το αρχείο.");
+	} catch (IOException ex) {
+		System.out.println(ex.toString());
+		greekOutput.printLine("Τερματισμός Προγράμματος.");
+		System.exit(0);
+
+	} finally {
+		try {
+			if (br != null)
+				br.close();
+		} catch (IOException ex ) {
+			System.out.println(ex.toString());
+		}
+	}	
+	}
+	
 
 }

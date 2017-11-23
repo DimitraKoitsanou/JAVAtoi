@@ -30,7 +30,5 @@ public class SplitWords {
     return splittedWords;
   }
 
-
-
 }
 
