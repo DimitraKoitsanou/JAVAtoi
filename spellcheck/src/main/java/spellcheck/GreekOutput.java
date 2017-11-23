@@ -6,25 +6,22 @@ import java.io.UnsupportedEncodingException;
 
 public class GreekOutput {
 
-private String codepage;
+  private String codepage;
+ 
+  public GreekOutput(String codepage) {
+    this.codepage = codepage;
+  }
 
-		public GreekOutput(String codepage) {
-		this.codepage = codepage;
-		}
+  public void printLine(String text) {
 
-		 public void printLine(String text) {
-
-					try{
-
-					PrintWriter p = new PrintWriter(new OutputStreamWriter(System.out,codepage),true);
-					p.println(text);
-
-					}
-					  catch (UnsupportedEncodingException e){
-						    System.out.println(e.toString());
-						    System.out.println(codepage + "δεν υποστηρίζεται.");
-						    System.out.println("Τερματισμός προγράμματος.");
-						    System.exit(0);
-				         }
-					}
-				}
+    try {
+      PrintWriter p = new PrintWriter(new OutputStreamWriter(System.out,codepage),true);
+      p.println(text);
+    } catch (UnsupportedEncodingException e) {
+      System.out.println(e.toString());
+      System.out.println(codepage + "δεν υποστηρίζεται.");
+      System.out.println("Τερματισμός προγράμματος.");
+      System.exit(0);
+    }
+  }
+}
