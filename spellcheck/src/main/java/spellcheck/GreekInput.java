@@ -22,7 +22,7 @@ public class GreekInput {
     return codepage;
   }
 
-  /**My <b>class</b>.*/
+ 
   public String readLine() {
     try {
       Reader reader = new InputStreamReader(System.in, codepage);
