@@ -21,9 +21,9 @@ public class SplitWords {
   public  LinkedList<String> getSplittedWordsList() {
 
     LinkedList<String> splittedWords = new LinkedList<String>();
-    String [] splitted = text.toLowerCase().replaceAll("\\p(F, replacement)", "")
-      .replaceAll("[0-9","").replaceAll("[a-zA-Z]","")
-      .replaceAll("\\s+","").split("\\s+"); 
+    String [] splitted = text.toLowerCase().replaceAll("\\p{Punct}", "")
+      .replaceAll("[0-9]","").replaceAll("[a-zA-Z]","")
+      .replaceAll("\\s+"," ").split("\\s+"); 
     for (String temp : splitted) {
       splittedWords.add(temp);
     }

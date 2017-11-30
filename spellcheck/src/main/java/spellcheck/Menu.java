@@ -1,3 +1,5 @@
+package spellcheck;
+
 public class Menu {
 
 	private String codepage;
@@ -9,36 +11,36 @@ public class Menu {
 	public String getMenu() {
 	
 	String userText;
+	String choice;
+	GreekOutput go = new GreekOutput(codepage);
+	GreekInput gi = new GreekInput(codepage);	
 	
 	while (true) {
-	
-			GreekOutput go = new GreekOutput(codepage);
-			GreekInput gi = new GreekInput(codepage);	
-
-			
-			try {
-				go.printLine("Για να εισάγετε κείμενο από το πληκτρολόγιο πατήστε '1'");
-				go.printLine("Για να εισάγετε κείμενο από αρχείο πατήστε '2'");
-				choice = gi.readLine();
-				if ( ! choice.equals("1") || ! choice.equals("2") )
-					throw new Exception();
-					break;
-				} catch(Exception ex) {
-				go.printLine("Δεν δώσατε έγκυρη επιλογή.");
-				}
+		
+		try {
+			go.printLine("Ξ“ΞΉΞ± Ξ½Ξ± ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΊΞµΞ―ΞΌΞµΞ½ΞΏ Ξ±Ο€Ο Ο„ΞΏ Ο€Ξ»Ξ·ΞΊΟ„ΟΞΏΞ»ΟΞ³ΞΉΞΏ Ο€Ξ±Ο„Ξ®ΟƒΟ„Ξµ '1'");
+			go.printLine("Ξ“ΞΉΞ± Ξ½Ξ± ΞµΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ ΞΊΞµΞ―ΞΌΞµΞ½ΞΏ Ξ±Ο€Ο ΞΊΞ¬Ο€ΞΏΞΉΞΏ Ξ±ΟΟ‡ΞµΞ―ΞΏ Ο€Ξ±Ο„Ξ®ΟƒΟ„Ξµ '2':");
+			choice = gi.readLine();
+			if ( ! ( choice.equals("1") || choice.equals("2") ) )
+				throw new Exception();
+				break;
+			} catch(Exception ex) {
+			go.printLine("Ξ”ΞµΞ½ ΞµΞΉΟƒΞ¬Ξ³Ξ±Ο„Ξµ Ξ­Ξ³ΞΊΟ…ΟΞ· ΞµΟ€ΞΉΞ»ΞΏΞ³Ξ®. ΞΞ±Ξ½Ξ±Ο€ΟΞΏΟƒΟ€Ξ±ΞΈΞ®ΟƒΟ„Ξµ.");
 			}
-			
-			if ( choice == "1" ) {
-				go.printLine("Πληκτρολογήστε το κείμενό σας: ");
-				userText = gi.readLine();
-			}
-			
-			else {
-				go.printLine("Εισάγετε το path του αρχείου: ");
-				String path = gi.readLine();
-				GreekFile gf = new GreekFile(path);
-				userText = gf.readGreekFile();
-			}
-
+		}
+		
+		if ( choice.equals("1") ) {
+			go.printLine("Ξ Ξ»Ξ·ΞΊΟ„ΟΞΏΞ»ΞΏΞ³Ξ®ΟƒΟ„Ξµ Ο„ΞΏ ΞΊΞµΞ―ΞΌΞµΞ½Ο ΟƒΞ±Ο‚: ");
+			userText = gi.readLine();
+		}
+		
+		else {
+			go.printLine("Ξ•ΞΉΟƒΞ¬Ξ³ΞµΟ„Ξµ Ο„ΞΏ path Ο„ΞΏΟ… Ξ±ΟΟ‡ΞµΞ―ΞΏΟ…: ");
+			String path = gi.readLine();
+			GreekFile gf = new GreekFile(path);
+			userText = gf.readGreekFile();
+		}
+		return userText;
 	}
+}	
 	

@@ -18,7 +18,7 @@ public class Dictionary {
 		this.codePage = codePage;
 	}
 	
-	public HashSet<String> returnDictionaryList(HashSet<String> dictionary){
+	public HashSet<String> returnDictionaryList(){
 		return dictionary;
 	}
 
