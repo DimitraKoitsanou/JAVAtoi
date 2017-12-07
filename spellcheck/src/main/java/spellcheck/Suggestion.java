@@ -4,16 +4,12 @@ import java.util.*;
 
 
 public class Suggestion {
-  private HashSet<String> dictionary;
 
+  private HashSet<String> dictionary;
 
   public  Suggestion(HashSet<String> dictionary) {
 
     this.dictionary = dictionary;
-
-  }
-
-  public Suggestion(){
 
   }
 
@@ -29,31 +25,34 @@ public class Suggestion {
 
   public String suggest(String wrongWord) {
 
-  String suggestion = "καμία πρόταση";
-  int minDistance= 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
-  for(String dictionaryWord : dictionary) {
-    int distance = 0;
-    if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) {
-      distance = minimumEditDistance(dictionaryWord,wrongWord);
-      if (distance == 1) {
-        return dictionaryWord;
+    String suggestion = "καμία πρόταση";
+
+    int minDistance = 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
+
+    for(String dictionaryWord : dictionary) {
+
+      int distance = 0;
+
+      if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) {
+
+        distance = minimumEditDistance(dictionaryWord,wrongWord);
+      
+          if (distance == 1) {
+            return dictionaryWord;
+          }
+
+          else if (distance < minDistance) {
+
+		    minDistance = distance;
+		    suggestion = dictionaryWord;
+          }
+
       }
+    }
+	return suggestion;
+  }
 
-				   if (distance < minDistance) {
-
-					minDistance = distance;
-					suggestion = dictionaryWord;}
-
-				}
-
-				}
-
-
-			return suggestion;
-
-		}
-
-		public  int minimumEditDistance(String firstWord, String secondWord) {
+		public int minimumEditDistance(String firstWord, String secondWord) {
 
 		int i, j=0;
 		int a = firstWord.length();

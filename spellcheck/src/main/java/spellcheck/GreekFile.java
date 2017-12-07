@@ -1,37 +1,49 @@
 package spellcheck;
+
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
-public class GreekFile { // READ FROM TEXT FILE! FILE MUST BE LOCATED INSIDE THE PROJECT!
+public class GreekFile {
 
-  private String fileName;
+  public final String UTF8_BOM = "\uFEFF";
+  private String path;
 
-  public GreekFile(String fileName) {
-    this.fileName = fileName;
+  public GreekFile(String path) {
+    this.path = path;
   }
 
-  public void setFileName(String name) {
-    this.fileName = name;
+  public void setPath(String path) {
+    this.path = path;
   }
   
-  public String getFileName(String name) {
-	 return fileName;
-	  }
+  public String getPath() {
+    return path;
+  }
 
   public String readGreekFile() {
 
     try {
-    	
+
       String text;
-      byte[] encoded = Files.readAllBytes(Paths.get(fileName));
+      byte[] encoded = Files.readAllBytes(Paths.get(path));
       text = new String(encoded,"UTF-8");
+      text = removeUTF8BOM(text);
       return text;
 
     } catch (IOException e) {
       System.out.println("Πρόβλημα εισόδου/εξόδου.");
       return null;
     }
+  }
+
+  public String removeUTF8BOM(String s) {
+    if (s.startsWith(UTF8_BOM)) {
+      s = s.substring(1);
+    }
+    return s;
   }
 
 }

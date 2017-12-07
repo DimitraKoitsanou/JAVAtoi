@@ -17,6 +17,10 @@ public class Dictionary {
 		this.fileName = fileName;
 		this.codePage = codePage;
 	}
+
+	public Dictionary(String fileName) {
+		this.fileName = fileName;
+	}
 	
 	public HashSet<String> returnDictionaryList(){
 		return dictionary;
