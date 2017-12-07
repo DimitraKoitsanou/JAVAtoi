@@ -19,8 +19,8 @@ public class GreekOutput {
       p.println(text);
     } catch (UnsupportedEncodingException e) {
       System.out.println(e.toString());
-      System.out.println(codepage + "δεν υποστηρίζεται.");
-      System.out.println("Τερματισμός προγράμματος.");
+      System.out.println(codepage + "not supported.");
+      System.out.println("Ending program.");
       System.exit(0);
     }
   }
