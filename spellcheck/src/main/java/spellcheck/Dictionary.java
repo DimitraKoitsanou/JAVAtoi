@@ -31,6 +31,7 @@ public class Dictionary {
 		FileInputStream fis = new FileInputStream(fileName);
 		br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
 		String line = null;
+		br.readLine();
 		while( (line = br.readLine() ) != null )
 				dictionary.add(line); 
 		

@@ -16,7 +16,7 @@ public class SpellCheck {
 		
 		GreekOutput go = new GreekOutput(codepage);
 		GreekInput gi = new GreekInput(codepage);
-		Dictionary d = new Dictionary("greekWords.txt",codepage);
+		Dictionary d = new Dictionary("GreekDictionaryFinal.txt",codepage);
 		d.putDictionaryToList();
 		HashSet<String> dictionary = d.returnDictionaryList();
 		Menu menu = new Menu(codepage);
