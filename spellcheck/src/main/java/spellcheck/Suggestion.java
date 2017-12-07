@@ -33,7 +33,7 @@ public class Suggestion {
   int minDistance= 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
   for(String dictionaryWord : dictionary) {
     int distance = 0;
-    if ( (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) &&(dictionaryWord.charAt(0) == wrongWord.charAt(0) )) {
+    if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) {
       distance = minimumEditDistance(dictionaryWord,wrongWord);
       if (distance == 1) {
         return dictionaryWord;
