@@ -3,6 +3,7 @@ package spellcheck;
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 
 import org.junit.Test;
 
@@ -16,10 +17,11 @@ public class suggestiontest {
 		HashSet<String> dictionary = d.returnDictionaryList();
 		Suggestion test = new Suggestion(dictionary) ;
 	
-		String output = test.suggest("σπίιτι") ;
+		LinkedList<String> suggestions = test.suggest("σπίιτι") ;
+		String output = suggestions.get(0);
 		assertEquals("σπίτι",output);
 		
-		int med = test.minimumEditDistance("σπίτι", "σπιτια");
+		int med = test.minimumEditDistance("ελλαδα", "Ελλάδα");
 		assertEquals(med,2);
 		
 	}

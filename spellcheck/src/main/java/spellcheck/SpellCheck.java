@@ -40,8 +40,10 @@ public class SpellCheck {
       Suggestion s = new Suggestion(dictionary);
 
       for (String temp : NonExistingWords) {
-        String suggestion = s.suggest(temp);
-        go.printLine("Πρόταση για '" + temp + "': " + suggestion);
+        LinkedList<String> suggestions = s.suggest(temp);
+        go.printLine("Προτάσεις για '" + temp + "': ");
+        for(String temp2 : suggestions)
+        go.printLine(temp2);
       }
     }
    }

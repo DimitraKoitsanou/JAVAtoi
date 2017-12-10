@@ -23,33 +23,45 @@ public class Suggestion {
     return dictionary;
   }
 
-  public String suggest(String wrongWord) {
-
-    String suggestion = "καμία πρόταση";
+  public LinkedList<String> suggest(String wrongWord) {
+		
+    LinkedList<String> suggestions = new LinkedList<String>();
+    
+    if (wrongWord.length() <=2 ) {
+    	suggestions.add("Η λέξη είναι πολύ μικρή για να γίνουν προστάσεις");
+    	return suggestions;
+    }
+    	
+    int counter = 0;
+    String suggestion="";
 
     int minDistance = 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
 
-    for(String dictionaryWord : dictionary) {
+      for(String dictionaryWord : dictionary) {
 
-      int distance = 0;
+        int distance = 0;
 
-      if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2 ) {
+        if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2) {
 
-        distance = minimumEditDistance(dictionaryWord,wrongWord);
+          distance = minimumEditDistance(dictionaryWord,wrongWord);
       
-          if (distance == 1) {
-            return dictionaryWord;
-          }
+            if (distance == 1 && counter <=4 && dictionaryWord.length()>=3 ) {
+               suggestions.add(dictionaryWord);
+               counter++;
+            }
 
-          else if (distance < minDistance) {
+            if (distance < minDistance) {
 
-		    minDistance = distance;
-		    suggestion = dictionaryWord;
-          }
+		      minDistance = distance;
+		      suggestion = dictionaryWord;
+            }
 
       }
     }
-	return suggestion;
+    
+    if( ! suggestions.contains(suggestion) )
+    	suggestions.add(suggestion);
+	return suggestions;
   }
 
 		public int minimumEditDistance(String firstWord, String secondWord) {
