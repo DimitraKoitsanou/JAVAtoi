@@ -8,53 +8,53 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 
 public class Dictionary {
-	
-	private HashSet<String> dictionary  = new HashSet<String>();
-	private String fileName;
-	private String codePage;
-	
-	public Dictionary(String fileName , String codePage) {
-		this.fileName = fileName;
-		this.codePage = codePage;
-	}
+  private HashSet<String> dictionary  = new HashSet<String>();
+  private String fileName;
+  private String codePage;
 
-	public Dictionary(String fileName) {
-		this.fileName = fileName;
-	}
-	
-	public HashSet<String> returnDictionaryList(){
-		return dictionary;
-	}
+  public Dictionary(String fileName , String codePage) {
+    this.fileName = fileName;
+    this.codePage = codePage;
+  }
 
-	public void putDictionaryToList() {
-		GreekOutput greekOutput = new GreekOutput(codePage);
-		BufferedReader br = null;
+  public Dictionary(String fileName) {
+    this.fileName = fileName;
+  }
 
-	try {
-			
-		FileInputStream fis = new FileInputStream(fileName);
-		br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
-		String line = null;
-		br.readLine();
-		while( (line = br.readLine() ) != null )
-				dictionary.add(line); 
-		
-	} catch (FileNotFoundException ex) {
-		greekOutput.printLine("Δεν βρέθηκε το αρχείο.");
-	} catch (IOException ex) {
-		System.out.println(ex.toString());
-		greekOutput.printLine("Τερματισμός Προγράμματος.");
-		System.exit(0);
+  public HashSet<String> returnDictionaryList() {
+    return dictionary;
+  }
 
-	} finally {
-		try {
-			if (br != null)
-				br.close();
-		} catch (IOException ex ) {
-			System.out.println(ex.toString());
-		}
-	}	
-	}
-	
+  public void putDictionaryToList() {
+    GreekOutput greekOutput = new GreekOutput(codePage);
+    BufferedReader br = null;
+
+    try {
+
+      FileInputStream fis = new FileInputStream(fileName);
+      br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
+      String line = null;
+      br.readLine();
+      while ((line = br.readLine()) != null) {
+        dictionary.add(line); 
+      }
+
+    } catch (FileNotFoundException ex) {
+      greekOutput.printLine("Δεν βρέθηκε το αρχείο.");
+    } catch (IOException ex) {
+      System.out.println(ex.toString());
+      greekOutput.printLine("Τερματισμός Προγράμματος.");
+      System.exit(0);
+
+    } finally {
+      try {
+        if (br != null) {
+          br.close();
+        }
+      } catch (IOException ex) {
+        System.out.println(ex.toString());
+      }
+    }
+  }
 
 }
