@@ -17,7 +17,6 @@ public class DictionaryTest {
 		list.add(a);
 		list.add(b);
 		list.add(c);
-		System.out.println(list);
 		Dictionary dictionary = new Dictionary("GreekDictionaryFinal.txt", "UTF-8");
 		dictionary.putDictionaryToList();
 		HashSet<String> lexiko = dictionary.returnDictionaryList();
