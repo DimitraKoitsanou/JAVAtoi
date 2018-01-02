@@ -8,14 +8,9 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 
 public class Dictionary {
+
   private HashSet<String> dictionary  = new HashSet<String>();
   private String fileName;
-  private String codePage;
-
-  public Dictionary(String fileName , String codePage) {
-    this.fileName = fileName;
-    this.codePage = codePage;
-  }
 
   public Dictionary(String fileName) {
     this.fileName = fileName;
@@ -26,7 +21,7 @@ public class Dictionary {
   }
 
   public void putDictionaryToList() {
-    GreekOutput greekOutput = new GreekOutput(codePage);
+
     BufferedReader br = null;
 
     try {
@@ -40,21 +35,21 @@ public class Dictionary {
       }
 
     } catch (FileNotFoundException ex) {
-      greekOutput.printLine("Δεν βρέθηκε το αρχείο.");
+      GreekOutput.printLine("Δεν βρέθηκε το αρχείο.");
     } catch (IOException ex) {
       System.out.println(ex.toString());
-      greekOutput.printLine("Τερματισμός Προγράμματος.");
+      GreekOutput.printLine("Τερματισμός Προγράμματος.");
       System.exit(0);
-
     } finally {
       try {
+
         if (br != null) {
           br.close();
         }
+
       } catch (IOException ex) {
         System.out.println(ex.toString());
       }
     }
   }
-
 }

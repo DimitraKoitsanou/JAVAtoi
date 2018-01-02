@@ -15,37 +15,46 @@ public class SpellCheck {
       System.exit(1);
     }
 
-    GreekOutput go = new GreekOutput(codepage);
-    GreekInput gi = new GreekInput(codepage);
-    Dictionary d = new Dictionary("GreekDictionaryFinal.txt",codepage);
+    GreekOutput.setCodepage(codepage);
+    GreekInput.setCodepage(codepage);
+    final String DICTIONARY_FILE = "GreekDictionaryFinal.txt";
+    Dictionary d = new Dictionary(DICTIONARY_FILE);
     d.putDictionaryToList();
     HashSet<String> dictionary = d.returnDictionaryList();
-    Menu menu = new Menu(codepage);
-    String userText = menu.getMenu();
+    Menu menu = new Menu();
+    String userText = menu.getMenu1();
 
     if (userText == null || userText.isEmpty()) {
-    	go.printLine("Δεν δώσατε καθόλου κείμενο.");
-    }
-    else {
 
-    SplitWords sw = new SplitWords(userText);
-    LinkedList<String> splittedWords = sw.getSplittedWordsList();
-    CheckWord cw = new CheckWord(dictionary, splittedWords, codepage);
-    LinkedList<String> NonExistingWords = cw.printNotExistedWords();
-    go.printLine("Αν θέλετε να σας γίνουν προτάσεις πατήστε '1': ");
-    String choice = gi.readLine();
+      GreekOutput.printLine("Δεν δώσατε καθόλου κείμενο.");
 
-    if (choice.equals("1")) {
+    } else {
 
-      Suggestion s = new Suggestion(dictionary);
+      SplitWords sw = new SplitWords(userText);
+      LinkedList<String> splittedWords = sw.getSplittedWordsList();
+      CheckWord cw = new CheckWord(dictionary, splittedWords);
+      LinkedList<String> NonExistingWords = cw.printNotExistedWords();
+    
+      if (! NonExistingWords.isEmpty()) {
 
-      for (String temp : NonExistingWords) {
-        LinkedList<String> suggestions = s.suggest(temp);
-        go.printLine("Προτάσεις για '" + temp + "': ");
-        for(String temp2 : suggestions)
-        go.printLine(temp2);
+        String choice = menu.getMenu2();
+
+        if (choice.equals("1")) {
+
+          Suggestion s = new Suggestion(dictionary);
+
+          for (String temp : NonExistingWords) {
+            LinkedList<String> suggestions = s.suggest(temp);
+            GreekOutput.printLine("Προτάσεις για '" + temp + "': ");
+            for (String temp2 : suggestions) {
+              GreekOutput.printLine(temp2);
+            }
+          }
+        }
+      }  else {
+        GreekOutput.printLine("Ο διορθωτής δεν εντόπισε ορθογραφικά λάθη.");
       }
     }
-   }
+    menu.getMenu3();
   }
 }

@@ -8,6 +8,7 @@ public class GreekFileUnitTesting {
 
   @Test
   public void test() {
+
     GreekFile gf = new GreekFile("GreekFileJunitText.txt");
     String text = gf.readGreekFile();
     System.out.println(gf.readGreekFile());
@@ -15,5 +16,4 @@ public class GreekFileUnitTesting {
         + "με όλες τις χώρες και όλους τους τομείς "
         + "να συνεισφέρουν στην ανάπτυξη και στη ζήτηση.");
   }
-
 }
