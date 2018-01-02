@@ -9,7 +9,7 @@ public class GreekFileUnitTesting {
   @Test
   public void test() {
 
-    GreekFile gf = new GreekFile("GreekFileJunitText.txt");
+    GreekFile gf = new GreekFile("src\\test\\resources\\" + "GreekFileJunitText.txt");
     String text = gf.readGreekFile();
     System.out.println(gf.readGreekFile());
     assertEquals(text,"Η Ευρωζώνη απολαμβάνει ευρεία οικονομική ανάκαμψη, "

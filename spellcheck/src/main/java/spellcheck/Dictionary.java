@@ -26,7 +26,7 @@ public class Dictionary {
 
     try {
 
-      FileInputStream fis = new FileInputStream(fileName);
+      FileInputStream fis = new FileInputStream("src\\main\\resources\\" + fileName);
       br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
       String line = null;
       br.readLine();
