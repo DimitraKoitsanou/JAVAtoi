@@ -4,12 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class GreekFileUnitTesting {
+public class GreekFileTest {
 
   @Test
   public void test() {
 
-    GreekFile gf = new GreekFile("src\\test\\resources\\" + "GreekFileJunitText.txt");
+    GreekFile gf = new GreekFile("GreekFileJunitText.txt");
     String text = gf.readGreekFile();
     System.out.println(gf.readGreekFile());
     assertEquals(text,"Η Ευρωζώνη απολαμβάνει ευρεία οικονομική ανάκαμψη, "

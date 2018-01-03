@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
+import org.omg.CORBA.portable.InputStream;
+
 public class Dictionary {
 
   private HashSet<String> dictionary  = new HashSet<String>();
@@ -26,7 +28,7 @@ public class Dictionary {
 
     try {
 
-      FileInputStream fis = new FileInputStream("src\\main\\resources\\" + fileName);
+      FileInputStream fis = new FileInputStream(fileName);
       br = new  BufferedReader(new InputStreamReader(fis,"UTF-8"));
       String line = null;
       br.readLine();
