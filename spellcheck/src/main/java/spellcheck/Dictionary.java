@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
 
-import org.omg.CORBA.portable.InputStream;
-
 public class Dictionary {
 
   private HashSet<String> dictionary  = new HashSet<String>();
