@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class GreekFile {
 
-  public final String Utf8_Bom = "\uFEFF";
+  public final String UTF8_BOM = "\uFEFF";
   private String path;
 
   public GreekFile(String path) {
@@ -42,14 +42,9 @@ public class GreekFile {
     }
   }
 
-<<<<<<< HEAD
   public String removeUtf8Bom(String s) {
-    if (s.startsWith(Utf8_Bom)) {
-=======
-  public String removeUTF8BOM(String s) {
 
     if (s.startsWith(UTF8_BOM)) {
->>>>>>> 360352b3a588d834b441c4a276dfb5bf38c5aeea
       s = s.substring(1);
     }
     return s;
