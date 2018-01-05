@@ -6,39 +6,32 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 
-public class GreekInput { 
+public class GreekInput {
 
-  private String codepage;
+  private static String codepage;
 
-  public GreekInput(String codepage) {
-    this.codepage = codepage;
+  public static void setCodepage(String cdpage) {
+    codepage = cdpage;
   }
-  
-  public void setCodePage(String codepage) {
-    this.codepage =  codepage;
-  }
-  
-  public String getCodePage() {
+
+  public static String getCodePage() {
     return codepage;
   }
 
- 
-  public String readLine() {
+  public static String readLine() {
+
     try {
+
       Reader reader = new InputStreamReader(System.in, codepage);
       BufferedReader br = new BufferedReader(reader);
       return br.readLine();
+
     } catch (UnsupportedEncodingException e) {
       System.out.println(e.toString());
-      System.out.println(codepage + "δεν υποστηρίζεται!");
-      System.out.println("Τερματισμός προγράμματος!");
-      System.exit(0);
       return "";
     } catch (IOException e) {
       System.out.println(e.toString());
       return "";
     }
-
-
   }
 }

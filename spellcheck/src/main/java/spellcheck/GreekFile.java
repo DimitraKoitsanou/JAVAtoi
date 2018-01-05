@@ -2,9 +2,8 @@ package spellcheck;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class GreekFile {
 
@@ -34,16 +33,25 @@ public class GreekFile {
       return text;
 
     } catch (IOException e) {
-      System.out.println("Πρόβλημα εισόδου/εξόδου.");
-      return null;
+      GreekOutput.printLine("Πρόβλημα εισόδου/εξόδου.");
+      return "-1";
+    } catch (InvalidPathException ex) {
+      System.out.println(ex.toString());
+      GreekOutput.printLine("Μη έγκυρος χαρακτήρας.");
+      return "-1";
     }
   }
 
+<<<<<<< HEAD
   public String removeUtf8Bom(String s) {
     if (s.startsWith(Utf8_Bom)) {
+=======
+  public String removeUTF8BOM(String s) {
+
+    if (s.startsWith(UTF8_BOM)) {
+>>>>>>> 360352b3a588d834b441c4a276dfb5bf38c5aeea
       s = s.substring(1);
     }
     return s;
   }
-
 }

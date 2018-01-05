@@ -21,14 +21,50 @@ public class SplitWords {
   public  LinkedList<String> getSplittedWordsList() {
 
     LinkedList<String> splittedWords = new LinkedList<String>();
-    String [] splitted = text.replaceAll("\\p{Punct}", "")
-      .replaceAll("[0-9]","").replaceAll("[a-zA-Z]","")
-      .replaceAll("\\s+"," ").split("\\s+"); 
+    
+    String [] splitted = text.trim().replaceAll("[^α-ωΑ-ΩςάέήίόύώΆΈΉΊΌΎΏϊΐϋΰΪΫ. ]","")
+            .replaceAll("\\s{2,}", " ").split("\\s+");
+
+
     for (String temp : splitted) {
       splittedWords.add(temp);
     }
-    return splittedWords;
+    
+    if (splittedWords.isEmpty()) {
+      return splittedWords;
+
+    } else {
+
+      return toLowerCaseAfterFullstop(splittedWords);
+    }
   }
+  
+  public LinkedList<String> toLowerCaseAfterFullstop( LinkedList<String> list) {
 
+    LinkedList<String> splittedWordsNoDots = new LinkedList<String>();
+
+    boolean fullstop = true;
+
+    for (String temp : list) {
+
+      if (fullstop) {
+
+        if (temp.length() > 0) {
+          temp = Character.toLowerCase(temp.charAt(0)) + temp.substring(1);
+        }
+      }
+
+      if (temp.contains(".")) {
+        temp = temp.replaceAll(".","");
+        fullstop = true;
+      } else {
+        fullstop = false;
+      }
+
+      if (! temp.equals("")) {
+        splittedWordsNoDots.add(temp);
+      }
+    }
+    return splittedWordsNoDots;
+  }
 }
-
