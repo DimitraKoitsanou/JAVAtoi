@@ -35,7 +35,10 @@ public class Dictionary {
       }
 
     } catch (FileNotFoundException ex) {
-      GreekOutput.printLine("Δεν βρέθηκε το αρχείο.");
+      System.out.println(ex.toString());
+      GreekOutput.printLine("Δεν βρέθηκε το αρχείο που περιέχει το λεξικό.");
+      GreekOutput.printLine("Τερματισμός Προγράμματος.");
+      System.exit(0);
     } catch (IOException ex) {
       System.out.println(ex.toString());
       GreekOutput.printLine("Τερματισμός Προγράμματος.");

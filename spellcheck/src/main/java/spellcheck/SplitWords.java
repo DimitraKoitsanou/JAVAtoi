@@ -25,7 +25,6 @@ public class SplitWords {
     String [] splitted = text.trim().replaceAll("[^α-ωΑ-ΩςάέήίόύώΆΈΉΊΌΎΏϊΐϋΰΪΫ. ]","")
             .replaceAll("\\s{2,}", " ").split("\\s+");
 
-
     for (String temp : splitted) {
       splittedWords.add(temp);
     }
