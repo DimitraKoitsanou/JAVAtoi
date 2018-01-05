@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class GreekFile {
 
-  public final String UTF8_BOM = "\uFEFF";
+  public final String Utf8_Bom = "\uFEFF";
   private String path;
 
   public GreekFile(String path) {
@@ -30,7 +30,7 @@ public class GreekFile {
       String text;
       byte[] encoded = Files.readAllBytes(Paths.get(path));
       text = new String(encoded,"UTF-8");
-      text = removeUTF8BOM(text);
+      text = removeUtf8Bom(text);
       return text;
 
     } catch (IOException e) {
@@ -39,8 +39,8 @@ public class GreekFile {
     }
   }
 
-  public String removeUTF8BOM(String s) {
-    if (s.startsWith(UTF8_BOM)) {
+  public String removeUtf8Bom(String s) {
+    if (s.startsWith(Utf8_Bom)) {
       s = s.substring(1);
     }
     return s;

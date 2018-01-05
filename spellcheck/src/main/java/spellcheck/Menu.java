@@ -21,10 +21,11 @@ public class Menu {
 			go.printLine("Για να εισάγετε κείμενο από το πληκτρολόγιο πατήστε '1'");
 			go.printLine("Για να εισάγετε κείμενο από κάποιο αρχείο πατήστε '2':");
 			choice = gi.readLine();
-			if ( ! ( choice.equals("1") || choice.equals("2") ) )
+			if ( ! ( choice.equals("1") || choice.equals("2") ) ) {
 				throw new Exception();
 				break;
-			} catch(Exception ex) {
+			} 
+			catch(Exception ex) {
 			go.printLine("Δεν εισάγατε έγκυρη επιλογή. Ξαναπροσπαθήστε.");
 			}
 		}
@@ -42,5 +43,5 @@ public class Menu {
 		}
 		return userText;
 	}
-}	
-	
+	}
+}

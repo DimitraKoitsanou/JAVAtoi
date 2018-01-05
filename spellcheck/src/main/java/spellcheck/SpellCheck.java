@@ -24,28 +24,25 @@ public class SpellCheck {
     String userText = menu.getMenu();
 
     if (userText == null || userText.isEmpty()) {
-    	go.printLine("Δεν δώσατε καθόλου κείμενο.");
-    }
-    else {
+      go.printLine("Δεν δώσατε καθόλου κείμενο.");
+    } else {
+      SplitWords sw = new SplitWords(userText);
+      LinkedList<String> splittedWords = sw.getSplittedWordsList();
+      CheckWord cw = new CheckWord(dictionary, splittedWords, codepage);
+      LinkedList<String> NonExistingWords = cw.printNotExistedWords();
+      go.printLine("Αν θέλετε να σας γίνουν προτάσεις πατήστε '1': ");
+      String choice = gi.readLine();
 
-    SplitWords sw = new SplitWords(userText);
-    LinkedList<String> splittedWords = sw.getSplittedWordsList();
-    CheckWord cw = new CheckWord(dictionary, splittedWords, codepage);
-    LinkedList<String> NonExistingWords = cw.printNotExistedWords();
-    go.printLine("Αν θέλετε να σας γίνουν προτάσεις πατήστε '1': ");
-    String choice = gi.readLine();
-
-    if (choice.equals("1")) {
-
-      Suggestion s = new Suggestion(dictionary);
-
-      for (String temp : NonExistingWords) {
-        LinkedList<String> suggestions = s.suggest(temp);
-        go.printLine("Προτάσεις για '" + temp + "': ");
-        for(String temp2 : suggestions)
-        go.printLine(temp2);
+      if (choice.equals("1")) {
+        Suggestion s = new Suggestion(dictionary);
+        for (String temp : NonExistingWords) {
+          LinkedList<String> suggestions = s.suggest(temp);
+          go.printLine("Προτάσεις για '" + temp + "': ");
+          for (String temp2 : suggestions) {
+            go.printLine(temp2);
+          }
+        }
       }
     }
-   }
   }
 }

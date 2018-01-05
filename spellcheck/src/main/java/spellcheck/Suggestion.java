@@ -24,85 +24,67 @@ public class Suggestion {
   }
 
   public LinkedList<String> suggest(String wrongWord) {
-		
+
     LinkedList<String> suggestions = new LinkedList<String>();
     
-    if (wrongWord.length() <=2 ) {
-    	suggestions.add("Η λέξη είναι πολύ μικρή για να γίνουν προστάσεις");
-    	return suggestions;
+    if (wrongWord.length() <= 2) {
+      suggestions.add("Η λέξη είναι πολύ μικρή για να γίνουν προστάσεις");
+      return suggestions;
     }
-    	
+    
     int counter = 0;
-    String suggestion="";
+    String suggestion = "";
 
     int minDistance = 50; //Integer.MAX_VALUE; to 50 einai arketo gia tin periptosi mas
 
-      for(String dictionaryWord : dictionary) {
-
-        int distance = 0;
-
-        if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2) {
-
-          distance = minimumEditDistance(dictionaryWord,wrongWord);
-      
-            if (distance == 1 && counter <=4 && dictionaryWord.length()>=3 ) {
-               suggestions.add(dictionaryWord);
-               counter++;
-            }
-
-            if (distance < minDistance) {
-
-		      minDistance = distance;
-		      suggestion = dictionaryWord;
-            }
+    for (String dictionaryWord : dictionary) {
+      int distance = 0;
+      if (Math.abs(wrongWord.length() - dictionaryWord.length()) <= 2) {
+        distance = minimumEditDistance(dictionaryWord,wrongWord);
+        if (distance == 1 && counter <= 4 && dictionaryWord.length() >= 3) {
+          suggestions.add(dictionaryWord);
+          counter++;
+        }
+        if (distance < minDistance) {
+          minDistance = distance;
+          suggestion = dictionaryWord;
+        }
 
       }
     }
     
-    if( ! suggestions.contains(suggestion) )
-    	suggestions.add(suggestion);
-	return suggestions;
+    if (! suggestions.contains(suggestion)) {
+      suggestions.add(suggestion);
+      return suggestions;
+    }
   }
 
-		public int minimumEditDistance(String firstWord, String secondWord) {
+  public int minimumEditDistance(String firstWord, String secondWord) {
+    int i = 0;
+    int j = 0;
+    int a = firstWord.length();
+    int b = secondWord.length();
+    int [][] array = new int[a + 1][b + 1];
+    for (i = 0 ; i <= a ; i++) {
+      for (j = 0 ; j <= b ; j++) {
+        if (i == 0) {
+          array[i][j] = j;
+        } else if (j == 0) {
+          array[i][j] = i;
+        } else if (firstWord.charAt(i - 1) == secondWord.charAt(j - 1)) {
+          array[i][j] = array[i - 1][j - 1];
+        } else {
+          array[i][j] = 1 + minimum(array[i][j - 1], array[i - 1][j - 1], array[i - 1][j]);
+        }
+      }
+    }
+    return array[a][b];
 
-		int i, j=0;
-		int a = firstWord.length();
-		int b = secondWord.length();
+  }
 
-		int [][] array = new int[a+1][b+1];
-
-		for (i = 0 ; i <= a ; i++) {
-
-			for (j = 0 ; j <= b ; j++) {
-
-				if (i == 0)
-					array[i][j] = j;
-
-				else if (j == 0)
-					array[i][j] = i;
-
-				else if (firstWord.charAt(i - 1) == secondWord.charAt(j - 1))
-					array[i][j] = array[i - 1][j - 1];
-
-				else
-					array[i][j] = 1 + minimum(array[i][j - 1], array[i - 1][j - 1], array[i - 1][j]);
-
-			}
-
-
-		}
-
-		return array[a][b];
-
-	}
-
-	public int minimum(int num1, int num2, int num3) {
-
-		int min1 = (num1 <= num2) ? num1 : num2 ;
-
-		return ( ( min1 <= num3 ) ? min1 : num3 );
-
-	}
+  public int minimum(int num1, int num2, int num3) {
+    int min1 = (num1 <= num2) ? num1 : num2 ;
+    return ((min1 <= num3) ? min1 : num3);
+  }
 
 }
