@@ -1,7 +1,7 @@
 package spellcheck;
 
-import java.util.*;
-
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Suggestion {
 

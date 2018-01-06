@@ -1,11 +1,8 @@
 package spellcheck;
 
 import static org.junit.Assert.*;
-
-
 import java.util.HashSet;
 import java.util.LinkedList;
-
 import org.junit.Test;
 
 public class SuggestionTest {
