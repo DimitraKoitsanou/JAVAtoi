@@ -6,20 +6,37 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+/**
+ * Represents a Dictionary containing many words.
+ * @author Aggeliki Kouroupaki
+ */
 
 public class Dictionary {
 
   private HashSet<String> dictionary  = new HashSet<String>();
   private String fileName;
 
+  /**
+   * This constructs a Dictionary with a specified file name.
+   * @param fileName the name of the file that contains the dictionary
+   */
   public Dictionary(String fileName) {
     this.fileName = fileName;
   }
 
+  /**
+   * This returns a HashSet containing the words of the dictionary.
+   * @return the dictionary's words
+   */
   public HashSet<String> returnDictionaryList() {
     return dictionary;
   }
 
+  /**
+   * This reads a file line by line and adds each line (word) to a HashSet.
+   * @exception FileNotFoundException if fileName does not exist, ends the program
+   * @exception IOException if fileName cannot be read, ends the program
+   */
   public void putDictionaryToList() {
 
     BufferedReader br = null;

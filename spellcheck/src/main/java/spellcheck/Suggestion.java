@@ -3,23 +3,49 @@ package spellcheck;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+/**
+ * This class is used to make suggestions for
+ * incorrectly spelt words using a given dictionary
+ * as reference. Suggestions are made based
+ * on the levenshtein distance algorithm.
+ * @author Maria Slamari
+ */
 public class Suggestion {
 
   private HashSet<String> dictionary;
 
-  public  Suggestion(HashSet<String> dictionary) {
+  /**
+   * This constructs a Suggestion using a specified
+   * dictionary for reference.
+   * @param dictionary to be used as reference
+   */
+  public Suggestion(HashSet<String> dictionary) {
     this.dictionary = dictionary;
   }
 
+  /**
+   * This sets the dictionary to be used as reference.
+   * @param dictionary to be used as reference
+   */
   public void setDictionary(HashSet<String> dictionary) {
     this.dictionary = dictionary;
   }
 
-
+  /**
+   * This returns the dictionary used as reference.
+   * @return the dictionary used as reference
+   */
   public HashSet<String> getDictionary() {
     return dictionary;
   }
 
+  /**
+   * This uses the levenshtein distance between
+   * a wrong word and dictionary words to make
+   * spelling suggestions.
+   * @param wrongWord an incorrectly spelt word
+   * @return a list of words having the least levenshtein distance
+   */
   public LinkedList<String> suggest(String wrongWord) {
 
     LinkedList<String> suggestions = new LinkedList<String>();
@@ -45,6 +71,9 @@ public class Suggestion {
         if (distance == 1 && counter <= 4 && dictionaryWord.length() >= 3) {
           suggestions.add(dictionaryWord);
           counter++;
+          if (counter == 4) {
+            break;
+          }
         }
 
         if (distance < minDistance) {
@@ -52,7 +81,6 @@ public class Suggestion {
           minDistance = distance;
           suggestion = dictionaryWord;
         }
-
       }
     }
     
@@ -62,6 +90,12 @@ public class Suggestion {
     return suggestions;
   }
 
+  /**
+   * Levenshtein Distance algorithm.
+   * @param firstWord first word
+   * @param secondWord second word
+   * @return the levenshtein distance between the two words
+   */
   public int minimumEditDistance(String firstWord, String secondWord) {
 
     int i = 0;
@@ -87,9 +121,16 @@ public class Suggestion {
       }
     }
     return array[a][b];
-
   }
 
+  /**
+   * This returns the smallest number
+   * between three numbers.
+   * @param num1 number one
+   * @param num2 number two
+   * @param num3 three
+   * @return the smallest of the three
+   */
   public int minimum(int num1, int num2, int num3) {
 
     int min1 = (num1 <= num2) ? num1 : num2 ;

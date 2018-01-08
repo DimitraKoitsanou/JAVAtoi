@@ -3,8 +3,17 @@ package spellcheck;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+/**
+ * This class represents a spell-checker.
+ * @author Dimitra Koitsanou, Konstantinos Marinakos
+ */
 public class SpellCheck {
 
+  /**
+  * This uses various classes to build a spell checking program.
+  * @param args code page to be used
+  * @exception ArrayIndexOutOfBoundsException if no code page given ends the program
+  */
   public static void main(String[] args) {
 
     String codepage = "";
@@ -51,7 +60,7 @@ public class SpellCheck {
             }
           }
         }
-      }  else {
+      } else {
         GreekOutput.printLine("Ο διορθωτής δεν εντόπισε ορθογραφικά λάθη.");
       }
     }
