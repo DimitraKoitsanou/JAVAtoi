@@ -34,8 +34,9 @@ public class Menu {
     }
 
     if (choice.equals("1")) {
-
+    
       GreekOutput.printLine("Πληκτρολογήστε το κείμενό σας: ");
+      GreekOutput.printLine("");
       userText = GreekInput.readLine();
 
     } else {
