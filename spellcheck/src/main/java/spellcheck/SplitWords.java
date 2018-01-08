@@ -54,7 +54,7 @@ public class SplitWords {
       }
 
       if (temp.contains(".")) {
-        temp = temp.replaceAll(".","");
+        temp = temp.replace(".", "");
         fullstop = true;
       } else {
         fullstop = false;
